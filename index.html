@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATHWAL CLOTHES | Premium Fashion</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#f5f2eb;color:#171717;font-family:'DM Sans',sans-serif}
+header{height:75px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;background:#101010;color:white;position:sticky;top:0;z-index:20}
+.logo{font-size:21px;font-weight:800;letter-spacing:3px}
+.logo span{color:#c7a875}
+nav{display:flex;gap:25px}
+nav a{color:white;text-decoration:none;font-size:12px;letter-spacing:1px}
+.actions button{background:none;border:0;color:white;font-size:14px;margin-left:15px;cursor:pointer}
+.hero{min-height:590px;background:linear-gradient(90deg,#000c,#0002),url('https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=1600') center/cover;display:flex;align-items:center;padding:8%;color:white}
+.hero-content{max-width:550px}
+.eyebrow{letter-spacing:4px;font-size:11px;color:#d6b98b}
+h1{font-family:'Playfair Display',serif;font-size:clamp(50px,8vw,88px);line-height:1.05;margin:20px 0}
+.hero p{line-height:1.8;color:#eee}
+.btn{display:inline-block;margin-top:27px;background:#c7a875;color:#111;padding:15px 28px;text-decoration:none;font-size:12px;font-weight:800;letter-spacing:1px;border:0;cursor:pointer}
+.section{padding:75px 7%}
+.heading{text-align:center;margin-bottom:35px}
+.heading small{letter-spacing:3px;color:#a18457}
+.heading h2{font-family:'Playfair Display',serif;font-size:38px;margin-top:10px}
+.categories{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.cat{height:280px;position:relative;overflow:hidden;cursor:pointer}
+.cat img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.cat:hover img{transform:scale(1.08)}
+.cat div{position:absolute;bottom:0;padding:35px 15px 18px;width:100%;color:white;font-size:21px;font-weight:700;background:linear-gradient(transparent,#000b)}
+.toolbar{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:25px}
+input,select{padding:12px;border:1px solid #ddd;background:white;font:inherit}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.product{background:white;position:relative}
+.product img{width:100%;height:290px;object-fit:cover;display:block}
+.product-info{padding:15px}
+.product-info h3{font-size:15px}
+.product-info p{margin:8px 0;color:#a18457;font-weight:700}
+.product-info button{width:100%;padding:11px;background:#111;color:white;border:0;cursor:pointer;font-weight:700}
+.heart{position:absolute;right:12px;top:12px;width:35px;height:35px;border:0;border-radius:50%;background:white;font-size:19px;cursor:pointer}
+.banner{background:#171717;color:white;text-align:center;padding:70px 20px}
+.banner h2{font:40px 'Playfair Display',serif;margin:12px}
+.banner p{color:#bbb}
+footer{background:#0c0c0c;color:#aaa;padding:45px 7%;text-align:center;font-size:13px}
+footer strong{color:white;letter-spacing:3px}
+.drawer{position:fixed;inset:0;background:#0009;z-index:30;display:none}
+.drawer-box{position:absolute;right:0;top:0;height:100%;width:min(390px,90%);background:white;padding:25px;overflow:auto}
+.drawer-box h2{font-family:'Playfair Display';margin-bottom:20px}
+.close{float:right;border:0;background:none;font-size:25px;cursor:pointer}
+.cart-item{padding:13px 0;border-bottom:1px solid #ddd;display:flex;justify-content:space-between;gap:10px;font-size:14px}
+.total{font-weight:800;margin-top:20px}
+#sizeSelect{margin:8px 0;width:100%;padding:9px}
+@media(max-width:800px){
+nav{display:none}
+.categories{grid-template-columns:repeat(2,1fr)}
+.products{grid-template-columns:repeat(2,1fr);gap:12px}
+.product img{height:230px}
+.section{padding:55px 5%}
+.hero{min-height:500px}
+}
+@media(max-width:390px){.product img{height:190px}.logo{font-size:17px}}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="logo">ATHWAL <span>CLOTHES</span></div>
+ <nav>
+  <a href="#home">HOME</a>
+  <a href="#categories">COLLECTION</a>
+  <a href="#shop">SHOP</a>
+  <a href="#footer">CONTACT</a>
+ </nav>
+ <div class="actions">
+  <button onclick="showWishlist()">♡ <span id="wishCount">0</span></button>
+  <button onclick="openCart()">BAG (<span id="cartCount">0</span>)</button>
+ </div>
+</header>
+
+<section class="hero" id="home">
+ <div class="hero-content">
+  <div class="eyebrow">THE NEW FASHION ERA</div>
+  <h1>Style That<br>Speaks.</h1>
+  <p>Discover modern essentials. Premium looks, effortless confidence and timeless style.</p>
+  <a href="#shop" class="btn">EXPLORE COLLECTION →</a>
+ </div>
+</section>
+
+<section class="section" id="categories">
+ <div class="heading">
+  <small>CURATED FOR YOU</small>
+  <h2>Shop By Category</h2>
+ </div>
+ <div class="categories">
+  <div class="cat" onclick="filterCategory('Pants')">
+   <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=600">
+   <div>Pants →</div>
+  </div>
+  <div class="cat" onclick="filterCategory('Shirts')">
+   <img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=600">
+   <div>Shirts →</div>
+  </div>
+  <div class="cat" onclick="filterCategory('T-shirts')">
+   <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600">
+   <div>T-shirts →</div>
+  </div>
+  <div class="cat" onclick="filterCategory('Jackets')">
+   <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600">
+   <div>Jackets →</div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="shop">
+ <div class="heading">
+  <small>ATHWAL EXCLUSIVE</small>
+  <h2>Latest Collection</h2>
+ </div>
+
+ <div class="toolbar">
+  <input id="search" placeholder="Search products..." oninput="renderProducts()">
+  <select id="category" onchange="renderProducts()">
+   <option value="All">All Categories</option>
+   <option>Pants</option>
+   <option>Shirts</option>
+   <option>T-shirts</option>
+   <option>Jackets</option>
+  </select>
+ </div>
+ <div class="products" id="products"></div>
+</section>
+
+<section class="banner">
+ <div class="eyebrow">DRESS YOUR CONFIDENCE</div>
+ <h2>Less Ordinary. More You.</h2>
+ <p>Modern fashion for the modern generation.</p>
+ <a href="#shop" class="btn">SHOP THE COLLECTION</a>
+</section>
+
+<footer id="footer">
+ <strong>ATHWAL CLOTHES</strong>
+ <p style="margin-top:15px">Modern Style. Timeless Confidence.</p>
+ <p style="margin-top:10px">© 2026 ATHWAL CLOTHES. All rights reserved.</p>
+</footer>
+
+<div class="drawer" id="drawer" onclick="closeCart(event)">
+ <div class="drawer-box" onclick="event.stopPropagation()">
+  <button class="close" onclick="closeCart()">×</button>
+  <h2 id="drawerTitle">Your Bag</h2>
+  <div id="cartItems"></div>
+  <div class="total" id="total"></div>
+ </div>
+</div>
+
+<script>
+const products=[
+ {id:1,name:"Urban Baggy Pants",category:"Pants",price:1499,image:"https://images.unsplash.com/photo-1542272604-787c3835535d?w=700"},
+ {id:2,name:"Classic Street Shirt",category:"Shirts",price:1299,image:"https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=700"},
+ {id:3,name:"Premium Oversized Tee",category:"T-shirts",price:799,image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=700"},
+ {id:4,name:"Modern Denim Jacket",category:"Jackets",price:2499,image:"https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=700"},
+ {id:5,name:"Everyday Relaxed Pants",category:"Pants",price:1599,image:"https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=700"},
+ {id:6,name:"Premium Casual Shirt",category:"Shirts",price:1399,image:"https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=700"},
+ {id:7,name:"Essential Black Tee",category:"T-shirts",price:699,image:"https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=700"},
+ {id:8,name:"Streetwear Jacket",category:"Jackets",price:2199,image:"https://images.unsplash.com/photo-1551028719-00167b16eac5?w=700"}
+];
+
+let cart=[];
+let wishlist=[];
+
+function renderProducts(){
+ const search=document.getElementById('search').value.toLowerCase();
+ const category=document.getElementById('category').value;
+ const filtered=products.filter(p=>
+  p.name.toLowerCase().includes(search)&&
+  (category==='All'||p.category===category)
+ );
+ document.getElementById('products').innerHTML=filtered.map(p=>`
+  <div class="product">
+   <button class="heart" onclick="toggleWish(${p.id})">${wishlist.includes(p.id)?'♥':'♡'}</button>
+   <img src="${p.image}" alt="${p.name}" loading="lazy">
+   <div class="product-info">
+    <h3>${p.name}</h3>
+    <p>₹${p.price.toLocaleString('en-IN')}</p>
+    <select id="size${p.id}">
+     <option value="S">Size S</option>
+     <option value="M" selected>Size M</option>
+     <option value="L">Size L</option>
+     <option value="XL">Size XL</option>
+     <option value="XXL">Size XXL</option>
+    </select>
+    <button onclick="addToCart(${p.id})">ADD TO BAG +</button>
+   </div>
+  </div>
+ `).join('');
+}
+
+function filterCategory(cat){
+ document.getElementById('category').value=cat;
+ renderProducts();
+ document.getElementById('shop').scrollIntoView({behavior:'smooth'});
+}
+
+function addToCart(id){
+ const p=products.find(x=>x.id===id);
+ const size=document.getElementById('size'+id).value;
+ cart.push({...p,size});
+ updateCart();
+ alert(p.name+' added to your bag!');
+}
+
+function toggleWish(id){
+ if(wishlist.includes(id)){
+  wishlist=wishlist.filter(x=>x!==id);
+ }else{
+  wishlist.push(id);
+ }
+ document.getElementById('wishCount').innerText=wishlist.length;
+ renderProducts();
+}
+
+function updateCart(){
+ document.getElementById('cartCount').innerText=cart.length;
+}
+
+function openCart(){
+ document.getElementById('drawerTitle').innerText='Your Bag';
+ renderCart();
+ document.getElementById('drawer').style.display='block';
+}
+
+function showWishlist(){
+ document.getElementById('drawerTitle').innerText='Your Wishlist';
+ const items=wishlist.map(id=>products.find(p=>p.id===id));
+ document.getElementById('cartItems').innerHTML=items.length?
+ items.map(p=>`<div class="cart-item"><span>${p.name}</span><b>₹${p.price}</b></div>`).join(''):
+ '<p>Your wishlist is empty.</p>';
+ document.getElementById('total').innerText='';
+ document.getElementById('drawer').style.display='block';
+}
+
+function renderCart(){
+ document.getElementById('cartItems').innerHTML=cart.length?
+ cart.map((p,i)=>`
+ <div class="cart-item">
+  <span>${p.name}<br><small>Size: ${p.size}</small><br>₹${p.price}</span>
+  <button onclick="removeItem(${i})">Remove</button>
+ </div>`).join(''):
+ '<p>Your bag is empty.</p>';
+ const total=cart.reduce((sum,p)=>sum+p.price,0);
+ document.getElementById('total').innerText=cart.length?'Total: ₹'+total.toLocaleString('en-IN'):'';
+}
+
+function removeItem(i){
+ cart.splice(i,1);
+ updateCart();
+ renderCart();
+}
+
+function closeCart(event){
+ if(!event||event.target.id==='drawer'){
+  document.getElementById('drawer').style.display='none';
+ }
+}
+
+renderProducts();
+</script>
+</body>
+  </html>
